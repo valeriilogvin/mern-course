@@ -1,4 +1,5 @@
 {
   "port": 5000,
+  "jwtSecret": "logvin",
   "mongoUri": "mongodb+srv://admin:qwerty147369@cluster0.q8niy.mongodb.net/app?retryWrites=true&w=majority"
 }

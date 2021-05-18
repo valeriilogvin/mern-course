@@ -4,14 +4,14 @@
 * и делать логику, которую мы опишем
 * */
 
-const jwt = require('jsonwebtoken') // библиотека для раскодирования токена
+const jwt = require('jsonwebtoken')// библиотека для раскодирования токена
 const config = require('config')
 
 module.exports = (req, res, next) => { // next - позволяет продолжить выполнение запроса
 
     // базавая проверка
     // проверяет доступность сервера
-    if(req.method === 'OPTIONS'){
+    if (req.method === 'OPTIONS') {
         return next()
     }
 
@@ -21,8 +21,8 @@ module.exports = (req, res, next) => { // next - позволяет продол
         const token = req.headers.authorization.split(' ')[1] // "Bearer TOKEN"
 
         // если нет токена
-        if(!token){
-            return res.status(401).json({message: 'Нет авторизации'})
+        if (!token) {
+            return res.status(401).json({ message: 'Нет авторизации' })
         }
 
         const decoded = jwt.verify(token, config.get('jwtSecret'))
@@ -30,6 +30,6 @@ module.exports = (req, res, next) => { // next - позволяет продол
         next()
 
     } catch (e) {
-        res.status(401).json({message: 'Нет авторизации'})
+        res.status(401).json({ message: 'Нет авторизации' })
     }
 }
